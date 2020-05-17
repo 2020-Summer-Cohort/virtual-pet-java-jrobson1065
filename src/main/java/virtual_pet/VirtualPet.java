@@ -4,121 +4,159 @@ import java.util.Random;
 
 public class VirtualPet {
     Random rand = new Random();
-    int hunger = rand.nextInt(5) + 3;
-    int thirst = rand.nextInt(5) + 3;
-    int happiness = rand.nextInt(5) + 3;
-    int health = rand.nextInt(5) + 3;
-    int age = rand.nextInt(5) + 3;
+    private int health = rand.nextInt(5) + 3;
+    private int happiness = rand.nextInt(5) + 3;
+    private int age = 1;
+    private int thirst = rand.nextInt(5) + 3;
+    private String surprise = "";
 
-
-    private void tick() {
-        hunger = hunger + 1;
-        thirst = thirst + 1;
+    void tick() {
         happiness = happiness - 1;
         health = health - 1;
+        thirst = thirst + 1;
         age = age + 1;
     }
 
-    private int getAge() {
+    void removeTick() {
+        happiness = happiness + 1;
+        health = health + 1;
+        thirst = thirst - 1;
+        age = age - 1;
+    }
+
+    String getState() {
+        if (thirst > 6) {
+            return "Thirsty";
+        } else if (health < 4) {
+            return "Unhealthy";
+        } else if (happiness < 4) {
+            return "Sad";
+        } else if (thirst < 4) {
+            return "Satisfied";
+        } else if (happiness > 6) {
+            return "Happy";
+        } else if (health > 6) {
+            return "Healthy";
+        } else if (age > 25) {
+            return "Old";
+        } else {
+            return "Okay";
+        }
+    }
+
+    int getAge() {
         return age;
     }
 
-    private int getHunger() {
-        return hunger;
-    }
-
-    private int getThirst() {
-        return thirst;
-    }
-
-    private int getHappiness() {
+    int getHappiness() {
+        if (happiness > 10) {
+            happiness = 10;
+        }
         return happiness;
     }
 
-    private int getHealth() {
+    int getHealth() {
+        if (health > 10) {
+            health = 10;
+        }
         return health;
     }
 
-    private void feedMe() {
-        hunger = hunger - 2;
-        health = health + 1;
+    int getThirst() {
+        if (thirst < 0) {
+            thirst = 0;
+        }
+        return thirst;
     }
 
-    private void waterMe() {
+    void waterMeFiltered() {
+        thirst = thirst - 3;
+        health = health + 2;
+    }
+
+    void waterMeNutrient() {
+        thirst = thirst - 3;
+        health = health + 2;
+        happiness = happiness + 1;
+    }
+
+    void waterMeTap() {
         thirst = thirst - 2;
         health = health + 1;
-
     }
 
-    private void talkToMe() {
+    void talkToMeCasual() {
+        happiness = happiness + 1;
+        health = health + 1;
+    }
+
+    void talkToMeEncouraging() {
         happiness = happiness + 2;
         health = health + 1;
-
     }
 
-    private void giveMeLight() {
+    void talkToMeEnthusiastic() {
+        happiness = happiness + 2;
+        health = health + 2;
+    }
+
+    void giveMeLightAmbient() {
         happiness = happiness + 1;
         health = health + 2;
-
     }
 
-    private void surpriseMe() {
+    void giveMeLightDeskLight() {
+        happiness = happiness + 2;
+        health = health + 2;
+    }
+
+    void giveMeLightSun() {
+        happiness = happiness + 2;
+        health = health + 3;
+    }
+
+    void surpriseMe() {
         int random = rand.nextInt(9) + 1;
         switch (random) {
             case 1:
-                feedMe();
+                waterMeTap();
+                surprise = " with tap water!";
                 break;
             case 2:
-                waterMe();
+                waterMeFiltered();
+                surprise = " with filtered water!";
                 break;
             case 3:
-                talkToMe();
+                waterMeNutrient();
+                surprise = " with nutrient water!";
                 break;
             case 4:
-                giveMeLight();
+                talkToMeEnthusiastic();
+                surprise = " with an enthusiastic talk!";
                 break;
             case 5:
-                surpriseMe();
+                talkToMeCasual();
+                surprise = " with a casual talk!";
                 break;
             case 6:
-                forgetToFeedMe();
+                talkToMeEncouraging();
+                surprise = " with encouragement!";
                 break;
             case 7:
-                forgetToWaterMe();
+                giveMeLightAmbient();
+                surprise = " with ambient light!";
                 break;
             case 8:
-                ignoreMe();
+                giveMeLightDeskLight();
+                surprise = " with desk light!";
                 break;
             case 9:
-                leaveMeInTheCorner();
-                break;
+                giveMeLightSun();
+                surprise = " with sunlight!";
         }
-
     }
 
-    private void forgetToFeedMe() {
-        hunger = hunger + 1;
-        health = health - 1;
-
+    String surprise() {
+        return surprise;
     }
-
-    private void forgetToWaterMe() {
-        thirst = thirst + 1;
-        health = health - 1;
-
-    }
-
-    private void ignoreMe() {
-        happiness = happiness - 1;
-        health = health - 1;
-
-    }
-
-    private void leaveMeInTheCorner() {
-        happiness = happiness - 1;
-        health = health - 1;
-
-    }
-
-
 }
