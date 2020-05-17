@@ -11,7 +11,8 @@
     
 - Interactive-Environment
     - [ ] Pet attributes aren't automatically displayed. Talk to your pet to see how he feels.
-    - [ ] 3 different levels of each action (ex: if you select "Feed Pet", there are 3 types of food, each with varying results)
+    - [ ] 3 different levels of each action (ex: if you select "Feed Pet", there are 3 types of food, each with varying results).
+    - [ ] When you ask you how he feels, he will display a "State" (happy, hungry, etc) to let you know how he feels.
         
 - Randomization
     - [ ] Pet attributes are randomly selected at the start of each round (attributes go from 0 - 10, they start between 3 and 7).

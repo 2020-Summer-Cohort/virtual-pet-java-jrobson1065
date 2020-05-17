@@ -128,7 +128,6 @@ public class VirtualPetApplication {
                     break;
                 default:
                     getStats();
-                    break;
             }
             myPet.tick();
         } catch (InputMismatchException exception) {
@@ -161,7 +160,6 @@ public class VirtualPetApplication {
                     break;
                 default:
                     getStats();
-                    break;
             }
             myPet.tick();
         } catch (InputMismatchException exception) {
@@ -194,7 +192,6 @@ public class VirtualPetApplication {
                     break;
                 default:
                     getStats();
-                    break;
             }
             myPet.tick();
         } catch (InputMismatchException exception) {
